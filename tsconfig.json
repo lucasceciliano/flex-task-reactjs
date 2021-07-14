@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/components/Board/index.tsx", "src/services/api.tsx"  ],
+, "src/components/Board/index.tsx", "src/services/api.tsx", "src/components/Card/index.tsx", "src/components/Card/index.tsx"  ],
   "exclude": [
     "node_modules"
   ]

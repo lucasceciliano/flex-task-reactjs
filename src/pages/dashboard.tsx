@@ -1,11 +1,14 @@
-import { Flex, SimpleGrid } from "@chakra-ui/react";
+import { Flex} from "@chakra-ui/react";
 import { Header } from "../components/Header";
 import { SideBar } from "../components/SideBar";
-import Board from "../components/Board/index"
+import Board from "../components/Board/index";
+
+
 
 
 export default function Dashboard() {
     return (
+        
         <Flex direction="column" h="100vh">
         <Header />
 
@@ -14,6 +17,8 @@ export default function Dashboard() {
             <Board />
         </Flex>
         </Flex>
+        
+        
     
         
     )

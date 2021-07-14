@@ -1,7 +1,11 @@
 import { Avatar, Box, Flex, Text } from '@chakra-ui/react'
 
 
-export default function Card({data}) {
+
+
+export default function Card({data }) {
+
+
     return(
         <Flex
         w="64"
