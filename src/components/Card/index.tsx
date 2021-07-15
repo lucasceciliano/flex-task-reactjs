@@ -1,24 +1,34 @@
-import { Avatar, Box, Flex, Text } from '@chakra-ui/react'
+import {useRef} from 'react'
+import { Box,  Flex, Text} from '@chakra-ui/react'
+import {Container as ContainerStyled} from './styles' 
+import {useDrag, useDrop} from 'react-dnd'
 
 
 
 
-export default function Card({data }) {
+export default function Card({data, index }) {
+    const ref = useRef()
 
+    const [{isDragging}, dragRef] = useDrag({
+        type: 'CARD',
+        item: { type: 'CARD', index, },
+        collect: monitor => ({
+            isDragging: monitor.isDragging(),
+        }),
+    })
+
+    const [, dropRef] = useDrop({
+        accept: 'CARD',
+        hover(item, monitor) {
+            monitor.isOver({shallow:true})
+        }
+    })
+
+    dragRef(dropRef(ref))
 
     return(
-        <Flex
-        w="64"
-        mr="4"
-        position="relative"
-        bg="gray.50"
-        borderRadius="4"
-        mb="2.5"
-        p="4"
-        boxShadow="0 1px 4px 0 rgba(0, 0, 0, 0.8)"
-        borderTop=" 20px solid rgba(206, 208, 211, 0.4)"
-        cursor="grab"
-        >
+        <ContainerStyled ref={ref} isDragging={isDragging} >
+        
             <Flex as="header" position="absolute" top="-15px" left="15px" > 
                 {data.labels.map(label =>
                 <Box
@@ -34,7 +44,8 @@ export default function Card({data }) {
             </Flex>
             
             <Text fontSize="sm" color="black" lineHeight="5" > {data.content} </Text>
-            {data.user && <Avatar size="sm" name="Lucas Ceciliano" m="2.5" left="2.5" src={data.user} /> }
-        </Flex>
+            {data.user && <img src={data.user} alt="avatar"/> }
+        
+        </ContainerStyled>
     )
 }

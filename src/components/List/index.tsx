@@ -42,7 +42,7 @@ export default function List({data}) {
 
             <CardList paddingTop="4" mt="9">
                 <Stack spacing="5">
-                {data.cards.map(card => <Card key={card.id} data={card} />)}
+                {data.cards.map((card, index) => <Card key={card.id} index={index} data={card} />)}
                 </Stack>
             </CardList>
         </Flex>
