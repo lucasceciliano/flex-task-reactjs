@@ -3,7 +3,7 @@ import { BiPlus } from 'react-icons/bi'
 import Card from '../Card'
 
 
-export default function List({data}) {
+export default function List({data, index: listIndex}) {
     return(
         <Flex
         direction="column"
@@ -42,7 +42,14 @@ export default function List({data}) {
 
             <CardList paddingTop="4" mt="9">
                 <Stack spacing="5">
-                {data.cards.map((card, index) => <Card key={card.id} index={index} data={card} />)}
+                { data.cards.map((card, index) => (
+          <Card 
+            key={card.id} 
+            listIndex={listIndex}
+            index={index} 
+            data={card}
+          />
+        )) }
                 </Stack>
             </CardList>
         </Flex>
