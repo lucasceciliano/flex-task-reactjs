@@ -1,9 +1,20 @@
-import { Button, Flex, Text, Icon, List as CardList, Stack, } from '@chakra-ui/react'
+import { Button, Flex, Text, Icon, List as CardList, Stack, Textarea } from '@chakra-ui/react'
+import {Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, Input} from "@chakra-ui/react"
+import { useState } from 'react'
 import { BiPlus } from 'react-icons/bi'
 import Card from '../Card'
 
 
+
 export default function List({data, index: listIndex}) {
+
+    
+        const { isOpen, onOpen, onClose } = useDisclosure()
+        
+         
+        
+      
+    
     return(
         <Flex
         direction="column"
@@ -31,13 +42,39 @@ export default function List({data, index: listIndex}) {
                 borderRadius="16"
                 boder="0"
                 cursor="pointer"
-                bg="orange.500"
+                colorScheme="orange"
+                onClick={onOpen}
                 
                 >
-                <Icon as={BiPlus} fontSize="20" />
+                    <Icon as={BiPlus} fontSize="20"  />
                 </Button>
-            )}
+                 
+                )}
 
+             <Modal isOpen={isOpen} onClose={onClose}>
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader color="gray.800" fontSize="24" >Adicione uma tarefa:</ModalHeader>
+                
+                <ModalBody>
+                    <Text color="gray.700"  fontSize="1xl" fontWeight="bold" >Título</Text>
+                    <Textarea color="gray.700" placeholder="Título" _placeholder={{ color: "gray.400" }} fontSize="sm" mt="2.5" mb="4" bg="gray.50" />
+                    
+                    <Text color="gray.700"  fontSize="1xl" fontWeight="bold" >Descrição:</Text>
+                    <Textarea color="gray.700" placeholder="Pesquisar" _placeholder={{ color: "gray.400" }} fontSize="sm" mt="2.5" bg="gray.50" />
+                
+                </ModalBody>
+      
+                <ModalFooter>
+                  <Button colorScheme="green" mr={3} >
+                    Adicionar
+                  </Button>
+                  <Button colorScheme="red" onClick={onClose} >Fechar</Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
+
+                
             </Flex>
 
             <CardList paddingTop="4" mt="9">
